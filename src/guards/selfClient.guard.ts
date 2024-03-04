@@ -38,12 +38,6 @@ export class selfClientGuard implements CanActivate {
         throw new BadRequestException('Ishchilar is not active');
       }
 
-      if (String(user.id) !== req.params.id) {
-        throw new ForbiddenException({
-          message: 'Ruxsat etilmagan foydalanuvchi',
-        });
-      }
-
       return true;
     }
 
