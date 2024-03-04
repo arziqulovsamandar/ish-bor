@@ -5,10 +5,7 @@ import {
   Body,
   Param,
   Delete,
-  UseInterceptors,
   Query,
-  HttpCode,
-  HttpStatus,
   Put,
   UseGuards,
 } from '@nestjs/common';
@@ -27,12 +24,12 @@ export class CategoryController {
 
   @ApiOperation({ summary: 'Add category' })
   @ApiResponse({ status: 200, description: 'New  Category', type: [Category] })
-  // @UseGuards(AdminGuard)
+  @UseGuards(AdminGuard)
   @Post('create')
   async create(@Body() createMediaDto: CreateCategoryDto) {
     return this.categoryService.create(createMediaDto);
   }
-  
+
   @ApiOperation({ summary: 'View all categories' })
   @ApiResponse({
     status: 200,
@@ -46,7 +43,7 @@ export class CategoryController {
 
   @ApiOperation({ summary: 'Category  edit' })
   @ApiResponse({ status: 200, description: 'Category by Id', type: [Category] })
-  // @UseGuards(AdminGuard)
+  @UseGuards(AdminGuard)
   @Put(':id')
   async updateById(
     @Param('id') id: string,
@@ -68,7 +65,7 @@ export class CategoryController {
     description: 'Deleted Category',
     type: [Category],
   })
-  // @UseGuards(AdminGuard)
+  @UseGuards(AdminGuard)
   @Delete(':id')
   async deleteById(@Param('id') id: string): Promise<number> {
     return this.categoryService.deleteById(+id);

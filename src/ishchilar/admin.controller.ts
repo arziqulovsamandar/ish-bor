@@ -40,6 +40,7 @@ export class IshchilarController {
   @ApiOperation({ summary: 'Login Ishchilar' })
   @ApiResponse({ status: 200, type: Ishchilar })
   @HttpCode(HttpStatus.OK)
+  @UseGuards(selfClientGuard)
   @Post('signin')
   login(
     @Body() loginAdminDto: LoginAdminDto,
@@ -63,6 +64,7 @@ export class IshchilarController {
   @ApiOperation({ summary: 'RefreshToken Ishchilar' })
   @ApiResponse({ status: 200, type: Ishchilar })
   @HttpCode(HttpStatus.OK)
+  @UseGuards(selfClientGuard)
   @Post(':id/refresh')
   refresh(
     @Param('id') id: string,

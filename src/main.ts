@@ -16,8 +16,11 @@ async function start() {
     const PORT = process.env.PORT || 3002;
     const app = await NestFactory.create(AppModule);
     app.enableCors();
-    const document = SwaggerModule.createDocument(app, config);
-    SwaggerModule.setup('/docs', app, document);
+    const document = SwaggerModule.createDocument(
+      app.setGlobalPrefix('api'),
+      config,
+    );
+    SwaggerModule.setup('/api/docs', app, document);
 
     app.use(cookieParser());
     app.setGlobalPrefix('api');

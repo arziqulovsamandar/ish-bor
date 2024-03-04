@@ -21,7 +21,7 @@ export class IshController {
   constructor(private readonly mediaService: IshService) {}
   @ApiOperation({ summary: 'Add Ish' })
   @ApiResponse({ status: 200, description: 'New  Ish', type: [Ish] })
-  // @UseGuards(AdminGuard)
+  @UseGuards(AdminGuard)
   @Post('create')
   async create(@Body() createMediaDto: CreateMediaDto) {
     return this.mediaService.create(createMediaDto);
@@ -47,7 +47,7 @@ export class IshController {
 
   @ApiOperation({ summary: 'Update Ish' })
   @ApiResponse({ status: 200, description: 'Updated Ish', type: [Ish] })
-  // @UseGuards(AdminGuard)
+  @UseGuards(AdminGuard)
   @Put(':id')
   async update(
     @Param('id') id: number,
@@ -58,7 +58,7 @@ export class IshController {
 
   @ApiOperation({ summary: 'Delete Ish' })
   @ApiResponse({ status: 200, description: 'Deleted Ish', type: [Ish] })
-  // @UseGuards(AdminGuard)
+  @UseGuards(AdminGuard)
   @Delete(':id')
   async delete(@Param('id') id: number): Promise<void> {
     return this.mediaService.delete(id);
