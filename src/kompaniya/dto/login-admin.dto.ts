@@ -3,12 +3,11 @@ import { IsEmail, IsNotEmpty, IsStrongPassword } from 'class-validator';
 
 export class LoginAdminDto {
   @ApiProperty({
-    example: 'salima@mail.uz',
-    description: 'Foydalanuvchi emaili',
+    example: '+998333360044',
+    description: 'Foydalanuvchi telefon raqami',
   })
-  @IsEmail()
   @IsNotEmpty()
-  email: string;
+  phone: number;
 
   @ApiProperty({ example: 'Uzbek1$t0n', description: 'Foydalanuvchi  paroli' })
   @IsNotEmpty()

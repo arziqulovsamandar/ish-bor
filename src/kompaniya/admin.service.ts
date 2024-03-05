@@ -88,8 +88,8 @@ export class KompaniyaService {
   }
 
   async login(loginadminDto: LoginAdminDto, res: Response) {
-    const { email, password } = loginadminDto;
-    const admin = await this.adminRepo.findOne({ where: { email } });
+    const { phone, password } = loginadminDto;
+    const admin = await this.adminRepo.findOne({ where: { phone } });
 
     if (!admin) {
       throw new UnauthorizedException('Admin not registered');
