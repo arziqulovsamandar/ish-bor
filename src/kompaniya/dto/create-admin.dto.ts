@@ -46,6 +46,7 @@ export class CreateAdminDto {
   @IsNotEmpty()
   phone: string;
 
-  role_id: number;
+  role: string;
+
   ish_id: number;
 }

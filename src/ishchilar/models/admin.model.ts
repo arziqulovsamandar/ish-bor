@@ -8,7 +8,6 @@ import {
 } from 'sequelize-typescript';
 import { ApiProperty } from '@nestjs/swagger';
 import { Category } from 'src/category/models/category.model';
-import { Role } from 'src/roles/models/role.model';
 
 interface AdminAttrs {
   first_name: string;
@@ -21,7 +20,7 @@ interface AdminAttrs {
   is_active: boolean;
   hashed_refresh_token: string;
   category_id: number;
-  role_id: number;
+  role: string;
 }
 
 @Table({ tableName: 'Ishchilar' })
@@ -80,6 +79,15 @@ export class Ishchilar extends Model<Ishchilar, AdminAttrs> {
   })
   phone: string;
 
+  @ApiProperty({
+    example: 'role ishchilar',
+    description: 'Ishchilar role',
+  })
+  @Column({
+    type: DataType.STRING,
+  })
+  role: string;
+
   @ApiProperty({ example: 'false', description: 'Admin activligi' })
   @Column({
     type: DataType.BOOLEAN,
@@ -106,13 +114,4 @@ export class Ishchilar extends Model<Ishchilar, AdminAttrs> {
   @BelongsTo(() => Category)
   category: Category;
 
-  @ForeignKey(() => Role)
-  @Column({
-    type: DataType.INTEGER,
-    onDelete: 'CASCADE',
-  })
-  role_id: number;
-
-  @BelongsTo(() => Role)
-  role: Role;
 }

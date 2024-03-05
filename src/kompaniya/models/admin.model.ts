@@ -18,7 +18,7 @@ interface AdminAttrs {
   email: string;
   is_active: boolean;
   hashed_refresh_token: string;
-  role_id: number;
+  role: string;
   ish_id: number;
 }
 
@@ -66,6 +66,15 @@ export class Kompaniya extends Model<Kompaniya, AdminAttrs> {
   })
   phone: string;
 
+  @ApiProperty({
+    example: 'Kompaniya',
+    description: 'Admin role',
+  })
+  @Column({
+    type: DataType.STRING,
+  })
+  role: string;
+
   @ApiProperty({ example: 'false', description: 'Admin activligi' })
   @Column({
     type: DataType.BOOLEAN,
@@ -81,16 +90,6 @@ export class Kompaniya extends Model<Kompaniya, AdminAttrs> {
     type: DataType.STRING,
   })
   hashed_refresh_token: string;
-
-  @ForeignKey(() => Role)
-  @Column({
-    type: DataType.INTEGER,
-    onDelete: 'CASCADE',
-  })
-  role_id: number;
-
-  @BelongsTo(() => Role)
-  role: Role;
 
   @ForeignKey(() => Ish)
   @Column({

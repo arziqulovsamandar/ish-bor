@@ -5,11 +5,10 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import { Kompaniya } from './models/admin.model';
 import { JwtModule } from '@nestjs/jwt';
 import { Ish } from 'src/ish/models/media.model';
-import { Role } from 'src/roles/models/role.model';
 
 @Module({
   imports: [
-    SequelizeModule.forFeature([Kompaniya, Ish, Role]),
+    SequelizeModule.forFeature([Kompaniya, Ish]),
     JwtModule.register({}),
   ],
   controllers: [KompaniyaController],

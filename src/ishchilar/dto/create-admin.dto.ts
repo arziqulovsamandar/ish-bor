@@ -6,7 +6,7 @@ import {
   IsString,
   IsStrongPassword,
   MinLength,
-  IsNumber
+  IsNumber,
 } from 'class-validator';
 
 export class CreateAdminDto {
@@ -23,7 +23,7 @@ export class CreateAdminDto {
   @ApiProperty({ example: '21', description: 'Admin yoshi' })
   @IsNumber()
   @IsNotEmpty()
-  age:number;
+  age: number;
 
   @ApiProperty({ example: 'chilonzor 11', description: 'Admin manzili' })
   @IsString()
@@ -57,6 +57,8 @@ export class CreateAdminDto {
   @IsNotEmpty()
   phone: string;
 
-  category_id:number
-  role_id:number
+  category_id: number;
+  
+  @IsNotEmpty()
+  role: string;
 }
